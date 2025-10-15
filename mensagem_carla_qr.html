@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Uma mensagem pra você 💌</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(to bottom right, #ffd9cc, #ffffff);
+      font-family: 'Poppins', sans-serif;
+    }
+    button {
+      background-color: #f5a08b;
+      color: white;
+      font-size: 1.2rem;
+      padding: 14px 28px;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+    }
+    button:hover {
+      transform: scale(1.05);
+      background-color: #f5937a;
+    }
+    .mensagem {
+      display: none;
+      font-size: 1.4rem;
+      color: #444;
+      text-align: center;
+      white-space: pre-line;
+    }
+    .assinatura {
+      margin-top: 8px;
+      color: #666;
+      font-style: italic;
+    }
+    .typing {
+      border-right: 2px solid #f5a08b;
+      animation: blink 0.7s step-end infinite;
+    }
+    @keyframes blink {
+      50% { border-color: transparent; }
+    }
+  </style>
+</head>
+<body>
+  <button id="revelar">Clique para ler 💌</button>
+  <div class="mensagem" id="mensagem"></div>
+  <script>
+    const btn = document.getElementById('revelar');
+    const msgContainer = document.getElementById('mensagem');
+    const texto = 'Carla, você tem o sorriso mais puro e encantador que já vi.\n— G';
+    
+    btn.addEventListener('click', () => {
+      btn.style.display = 'none';
+      msgContainer.style.display = 'block';
+      let i = 0;
+      function digitar() {
+        if (i < texto.length) {
+          msgContainer.innerHTML = texto.slice(0, i + 1) + '<span class="typing"></span>';
+          i++;
+          setTimeout(digitar, 50);
+        } else {
+          msgContainer.innerHTML = texto;
+        }
+      }
+      digitar();
+    });
+  </script>
+</body>
+</html>
